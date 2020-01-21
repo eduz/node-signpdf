@@ -19,6 +19,14 @@ var _helpers = require("./helpers");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable block-scoped-var */
+
+/* eslint-disable no-redeclare */
+
+/* eslint-disable no-var */
+
+/* eslint-disable vars-on-top */
+
 /* eslint-disable no-undef */
 
 /* eslint-disable no-unused-vars */
@@ -30,20 +38,20 @@ const os = require('os');
 
 if (os.platform() === 'win32') {
   if (os.arch() === 'ia32') {
-    const chilkat = require('@chilkat/ck-node10-win-ia32');
+    var chilkat = require('@chilkat/ck-node10-win-ia32');
   } else {
-    const chilkat = require('@chilkat/ck-node10-win64');
+    var chilkat = require('@chilkat/ck-node10-win64');
   }
 } else if (os.platform() === 'linux') {
   if (os.arch() === 'arm') {
-    const chilkat = require('@chilkat/ck-node10-arm');
+    var chilkat = require('@chilkat/ck-node10-arm');
   } else if (os.arch() === 'x86') {
-    const chilkat = require('@chilkat/ck-node10-linux32');
+    var chilkat = require('@chilkat/ck-node10-linux32');
   } else {
-    const chilkat = require('@chilkat/ck-node10-linux64');
+    var chilkat = require('@chilkat/ck-node10-linux64');
   }
 } else if (os.platform() === 'darwin') {
-  const chilkat = require('@chilkat/ck-node11-macosx');
+  var chilkat = require('@chilkat/ck-node10-macosx');
 }
 
 const DEFAULT_BYTE_RANGE_PLACEHOLDER = '**********';
@@ -229,7 +237,7 @@ class SignPdf {
     let success = glob.UnlockBundle(process.env.CHILKAT_LICENSE ? process.env.CHILKAT_LICENSE : 'Anything for 30-day trial');
 
     if (success !== true) {
-      console.log(glob.LastErrorText);
+      // console.log(glob.LastErrorText);
       return;
     }
 
@@ -238,7 +246,7 @@ class SignPdf {
     success = cert.LoadPfxData(p12Buffer, options.passphrase);
 
     if (success !== true) {
-      console.log(cert.LastErrorText);
+      // console.log(cert.LastErrorText);
       return;
     }
 

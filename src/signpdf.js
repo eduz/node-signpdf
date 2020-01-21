@@ -1,3 +1,7 @@
+/* eslint-disable block-scoped-var */
+/* eslint-disable no-redeclare */
+/* eslint-disable no-var */
+/* eslint-disable vars-on-top */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
@@ -10,20 +14,20 @@ const os = require('os');
 
 if (os.platform() === 'win32') {
     if (os.arch() === 'ia32') {
-        const chilkat = require('@chilkat/ck-node10-win-ia32');
+        var chilkat = require('@chilkat/ck-node10-win-ia32');
     } else {
-        const chilkat = require('@chilkat/ck-node10-win64');
+        var chilkat = require('@chilkat/ck-node10-win64');
     }
 } else if (os.platform() === 'linux') {
     if (os.arch() === 'arm') {
-        const chilkat = require('@chilkat/ck-node10-arm');
+        var chilkat = require('@chilkat/ck-node10-arm');
     } else if (os.arch() === 'x86') {
-        const chilkat = require('@chilkat/ck-node10-linux32');
+        var chilkat = require('@chilkat/ck-node10-linux32');
     } else {
-        const chilkat = require('@chilkat/ck-node10-linux64');
+        var chilkat = require('@chilkat/ck-node10-linux64');
     }
 } else if (os.platform() === 'darwin') {
-    const chilkat = require('@chilkat/ck-node11-macosx');
+    var chilkat = require('@chilkat/ck-node10-macosx');
 }
 export {default as SignPdfError} from './SignPdfError';
 
