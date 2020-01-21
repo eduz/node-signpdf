@@ -23,7 +23,7 @@
     ],
     "main": "dist/signpdf.js",
     "engines": {
-        "node": ">=8.9"
+        "node": ">=10"
     },
     "scripts": {
         "test:coverage": "./node_modules/.bin/jest --coverage",
@@ -62,5 +62,13 @@
         "jest": "^24.5.0",
         "node-forge": "^0.7.6",
         "pdfkit": "^0.10.0"
+    },
+    "optionalDependencies": {
+        "@chilkat/ck-node10-macosx": "^9.50.80",
+        "@chilkat/ck-node10-win-ia32": "^9.50.80",
+        "@chilkat/ck-node10-win64": "^9.50.80",
+        "@chilkat/ck-node10-arm": "^9.50.80",
+        "@chilkat/ck-node10-linux32": "^9.50.80",
+        "@chilkat/ck-node10-linux64": "^9.50.80"
     }
 }
