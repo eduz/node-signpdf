@@ -5,7 +5,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/vbuch/node-signpdf/badge.svg?branch=master)](https://coveralls.io/github/vbuch/node-signpdf?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/npm/node-signpdf/badge.svg)](https://snyk.io/test/npm/node-signpdf)
 
-Simple signing of PDFs in node.
+Simple signing of PDFs in node. Modified version to support signing PDFs using ICP-Brasil PAdES policy (Chilkat API required for this feature, set environment var CHILKAT_LICENSE with key or it will run in a 30 day trial mode).
+
 
 * [node-signpdf](#node-signpdf)
   * [Purpose](#purpose)
@@ -88,6 +89,8 @@ That's where the Signer kicks in. Given a PDF and a P12 certificate a signature 
 [node-forge](https://github.com/digitalbazaar/forge) is used for working with signatures.
 
 [PDFKit](https://github.com/foliojs/pdfkit) is used in the tests for generating a PDF with a signature placeholder.
+
+[Chilkat](https://www.chilkatsoft.com) is used to sign ICP-Brasil compliant PAdES signatures.
 
 ## Credits
 
