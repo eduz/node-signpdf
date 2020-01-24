@@ -408,7 +408,7 @@ export class SignPdf {
 
         crypt.SigningAttributes = attrs.Emit();
 
-        const bufSig = crypt.SignBytes(pdf);
+        const bufSig = crypt.SignBytes(pdfBuffer);
 
         // eslint-disable-next-line consistent-return
         return bufSig;
