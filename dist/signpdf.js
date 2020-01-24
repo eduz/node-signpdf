@@ -203,8 +203,14 @@ class SignPdf {
 
     if (!(p12Buffer instanceof Buffer)) {
       throw new _SignPdfError.default('p12 certificate expected as Buffer.', _SignPdfError.default.TYPE_INPUT);
-    }
+    } // eslint-disable-next-line no-param-reassign
 
+
+    pdfBuffer = (0, _helpers.plainAddPlaceholder)({
+      pdfBuffer,
+      reason: 'Assinatura Digital',
+      signatureLength: 3500
+    });
     let pdf = (0, _helpers.removeTrailingNewLine)(pdfBuffer); // Find the ByteRange placeholder.
 
     const byteRangePlaceholder = [0, `/${this.byteRangePlaceholder}`, `/${this.byteRangePlaceholder}`, `/${this.byteRangePlaceholder}`];

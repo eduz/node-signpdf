@@ -63,13 +63,6 @@ export class SignPdf {
             );
         }
 
-        // eslint-disable-next-line no-param-reassign
-        pdfBuffer = plainAddPlaceholder({
-            pdfBuffer,
-            reason: 'Assinatura Digital',
-            signatureLength: 3500,
-        });
-
         let pdf = removeTrailingNewLine(pdfBuffer);
 
         // Find the ByteRange placeholder.
@@ -242,6 +235,13 @@ export class SignPdf {
                 SignPdfError.TYPE_INPUT,
             );
         }
+
+        // eslint-disable-next-line no-param-reassign
+        pdfBuffer = plainAddPlaceholder({
+            pdfBuffer,
+            reason: 'Assinatura Digital',
+            signatureLength: 3500,
+        });
 
         let pdf = removeTrailingNewLine(pdfBuffer);
 
