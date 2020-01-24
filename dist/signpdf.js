@@ -333,7 +333,7 @@ class SignPdf {
     attrs.UpdateString('policyId.uri', 'http://politicas.icpbrasil.gov.br/PA_AD_RB_v2_3.der');
     attrs.UpdateBool('signingCertificateV2', true);
     crypt.SigningAttributes = attrs.Emit();
-    const bufSig = crypt.SignBytes(pdf); // eslint-disable-next-line consistent-return
+    const bufSig = crypt.SignBytes(pdfBuffer); // eslint-disable-next-line consistent-return
 
     return bufSig;
   }
