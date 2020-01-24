@@ -8,7 +8,7 @@
 /* eslint-disable global-require */
 import forge from 'node-forge';
 import SignPdfError from './SignPdfError';
-import {removeTrailingNewLine} from './helpers';
+import {removeTrailingNewLine, plainAddPlaceholder} from './helpers';
 
 const os = require('os');
 
@@ -62,6 +62,13 @@ export class SignPdf {
                 SignPdfError.TYPE_INPUT,
             );
         }
+
+        // eslint-disable-next-line no-param-reassign
+        pdfBuffer = plainAddPlaceholder({
+            pdfBuffer,
+            reason: 'Assinatura Digital',
+            signatureLength: 3500,
+        });
 
         let pdf = removeTrailingNewLine(pdfBuffer);
 
