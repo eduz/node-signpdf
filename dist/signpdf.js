@@ -285,6 +285,59 @@ class SignPdf {
     return pdf;
   }
 
+  signCadesICPBrasil(pdfBuffer, p12Buffer, additionalOptions = {}) {
+    const options = {
+      asn1StrictParsing: false,
+      passphrase: '',
+      ...additionalOptions
+    };
+
+    if (!(pdfBuffer instanceof Buffer)) {
+      throw new _SignPdfError.default('File expected as Buffer.', _SignPdfError.default.TYPE_INPUT);
+    }
+
+    if (!(p12Buffer instanceof Buffer)) {
+      throw new _SignPdfError.default('p12 certificate expected as Buffer.', _SignPdfError.default.TYPE_INPUT);
+    } // Initiate chilkat
+
+
+    const glob = new chilkat.Global();
+    let success = glob.UnlockBundle(process.env.CHILKAT_LICENSE ? process.env.CHILKAT_LICENSE : 'Anything for 30-day trial');
+
+    if (success !== true) {
+      // console.log(glob.LastErrorText);
+      return;
+    }
+
+    const crypt = new chilkat.Crypt2();
+    const cert = new chilkat.Cert();
+    success = cert.LoadPfxData(p12Buffer, options.passphrase);
+
+    if (success !== true) {
+      // console.log(cert.LastErrorText);
+      return;
+    }
+
+    crypt.SetSigningCert(cert);
+    crypt.HashAlgorithm = 'sha256'; // Create JSON to indicate which signing attributes to include.
+
+    const attrs = new chilkat.JsonObject();
+    attrs.UpdateBool('contentType', true);
+    attrs.UpdateBool('signingTime', true);
+    attrs.UpdateBool('messageDigest', true);
+    attrs.UpdateString('contentHint.text', 'Content-Type: application/octet-stream\r\nContent-Disposition: attachment;filename="documento.pdf"');
+    attrs.UpdateString('contentHint.oid', '1.2.840.113549.1.7.1');
+    attrs.UpdateString('policyId.id', '2.16.76.1.7.1.1.2.3');
+    attrs.UpdateString('policyId.hash', 'sW6Iu/dzIqZ5lbeQeHeO09DqfIhYe29tUYtxXo92o9U=');
+    attrs.UpdateString('policyId.hashAlg', 'SHA256');
+    attrs.UpdateString('policyId.uri', 'http://politicas.icpbrasil.gov.br/PA_AD_RB_v2_3.der');
+    attrs.UpdateBool('signingCertificateV2', true);
+    crypt.SigningAttributes = attrs.Emit();
+    const bufSig = crypt.SignBytes(pdf); // eslint-disable-next-line consistent-return
+
+    return bufSig;
+  }
+
 }
 
 exports.SignPdf = SignPdf;
