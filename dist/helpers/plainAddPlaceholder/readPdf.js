@@ -5,15 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _SignPdfError = _interopRequireDefault(require("../../SignPdfError"));
-
 var _readRefTable = _interopRequireDefault(require("./readRefTable"));
 
 var _findObject = _interopRequireDefault(require("./findObject"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* eslint-disable no-unused-vars */
 
 /**
  * Simplified parsing of a PDF Buffer.
